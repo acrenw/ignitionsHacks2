@@ -1,7 +1,7 @@
 import random, string
 from flask import Flask, render_template, request
 import requests, json
-from werkzeug import *
+from werkzeug.utils import secure_filename
 
 app = Flask(  # Create a flask app
 	__name__,
@@ -44,6 +44,13 @@ def page_2():
 @app.route('/upload')
 def upload_file():
    return render_template('upload.html')
+
+@app.route('/uploader', methods = ['GET', 'POST'])
+def upload_file2():
+   if request.method == 'POST':
+      f = request.files['file']
+      f.save(secure_filename(f.filename))
+      return 'file uploaded successfully'
 
 
 if __name__ == "__main__":  # Makes sure this is the main process
