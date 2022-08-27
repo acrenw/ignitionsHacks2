@@ -1,7 +1,7 @@
 import random, string
 from flask import Flask, render_template, request
 import requests, json
-# from werkzeug import secure_filename
+from werkzeug import *
 
 app = Flask(  # Create a flask app
 	__name__,
@@ -39,6 +39,11 @@ def page_2():
 	rand_ammnt = random.randint(10, 100)
 	random_str = ''.join(random.choice(ok_chars) for a in range(rand_ammnt))
 	return render_template('site_2.html', random_str=random_str)
+
+
+@app.route('/upload')
+def upload_file():
+   return render_template('upload.html')
 
 
 if __name__ == "__main__":  # Makes sure this is the main process
