@@ -17,24 +17,32 @@
         <label for="file_upload" class="custom_file_upload">
           <i class="fa fa-cloud-upload"></i> upload a file
         </label>
-        <input id="file_upload" type="file"/>
+        <input id="file_upload" type="file" name = 'file'/>
 
         
         <label for = "file_submit" class = "custom_file_submit">
          submit
       	</label>
-        <input id = "file_submit" type = 'submit'/>
+        <input id = "file_submit" type = 'submit'value = 'submit' name = 'submit'/>
 			</form>
      
       <div>
       <br>
-     
+				
+<!--      <form action = "/uploader" method = "POST" enctype="multipart/form-data">
+        <input type = "file" name = "file" />
+        <input type = "submit" value = 'submit' name = 'submit'/>
+      </form> -->
+<!-- 			<form action="/summarize" method="POST">
+        <input type="submit" value="Get summary" name="summary" />
+        <input type="submit" value="Translate" name="translate" />
+      </form> -->
      <form action="/summarize" method="POST">
        
         <label for = "file_summary" class = "custom_file_summary">
          summarize
       	</label>
-        <input id = "file_summary" type = 'text'/>
+        <input id = "file_summary" type = 'submit'value="Get summary" name="summary" />
 			</form>
 
      <div>
@@ -45,7 +53,7 @@
        <label for = "file_translate" class = "custom_file_translate">
          translate
       	</label>
-        <input id = "file_translate" type = 'text'/>
+        <input id = "file_translate" type = 'submit'value="Translate" name="translate" />
 			</form>
        <br>
        
