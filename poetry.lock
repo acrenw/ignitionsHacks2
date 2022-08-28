@@ -1,4 +1,49 @@
 [[package]]
+name = "alembic"
+version = "1.4.3"
+description = "A database migration tool for SQLAlchemy."
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+
+[package.dependencies]
+Mako = "*"
+python-dateutil = "*"
+python-editor = ">=0.3"
+SQLAlchemy = ">=1.1.0"
+
+[[package]]
+name = "aniso8601"
+version = "9.0.1"
+description = "A library for parsing ISO 8601 strings."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.extras]
+dev = ["black", "coverage", "isort", "pre-commit", "pyenchant", "pylint"]
+
+[[package]]
+name = "application"
+version = "1.0"
+description = ""
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+flask = "*"
+flask-marshmallow = "0.9.0"
+Flask-Migrate = "2.3.0"
+Flask-MySQLdb = "0.2.0"
+Flask-RESTful = "0.3.6"
+Flask-SQLAlchemy = "2.1"
+marshmallow = "2.13.6"
+marshmallow-sqlalchemy = "0.15.0"
+mysqlclient = "1.3.13"
+SQLAlchemy = "1.2.13"
+
+[[package]]
 name = "certifi"
 version = "2022.6.15"
 description = "Python package for providing Mozilla's CA Bundle."
@@ -51,6 +96,74 @@ Werkzeug = ">=2.2.2"
 [package.extras]
 async = ["asgiref (>=3.2)"]
 dotenv = ["python-dotenv"]
+
+[[package]]
+name = "flask-marshmallow"
+version = "0.9.0"
+description = "Flask + marshmallow for beautiful APIs"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+Flask = "*"
+marshmallow = ">=2.0.0"
+six = ">=1.9.0"
+
+[[package]]
+name = "flask-migrate"
+version = "2.3.0"
+description = "SQLAlchemy database migrations for Flask applications using Alembic"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+alembic = ">=0.7"
+Flask = ">=0.9"
+Flask-SQLAlchemy = ">=1.0"
+
+[[package]]
+name = "flask-mysqldb"
+version = "0.2.0"
+description = "MySQLdb extension for Flask"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+Flask = ">=0.10"
+mysqlclient = "*"
+
+[[package]]
+name = "flask-restful"
+version = "0.3.6"
+description = "Simple framework for creating REST APIs"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+aniso8601 = ">=0.82"
+Flask = ">=0.8"
+pytz = "*"
+six = ">=1.3.0"
+
+[package.extras]
+docs = ["sphinx"]
+paging = ["pycrypto (>=2.6)"]
+
+[[package]]
+name = "flask-sqlalchemy"
+version = "2.1"
+description = "Adds SQLAlchemy support to your Flask application"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+Flask = ">=0.10"
+SQLAlchemy = ">=0.7"
 
 [[package]]
 name = "googletrans"
@@ -184,12 +297,91 @@ MarkupSafe = ">=2.0"
 i18n = ["Babel (>=2.7)"]
 
 [[package]]
+name = "mako"
+version = "1.2.1"
+description = "A super-fast templating language that borrows the best ideas from the existing templating languages."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+MarkupSafe = ">=0.9.2"
+
+[package.extras]
+babel = ["babel"]
+lingua = ["lingua"]
+testing = ["pytest"]
+
+[[package]]
 name = "markupsafe"
 version = "2.1.1"
 description = "Safely add untrusted strings to HTML/XML markup."
 category = "main"
 optional = false
 python-versions = ">=3.7"
+
+[[package]]
+name = "marshmallow"
+version = "2.13.6"
+description = "A lightweight library for converting complex datatypes to and from native Python datatypes."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.extras]
+reco = ["python-dateutil", "simplejson"]
+
+[[package]]
+name = "marshmallow-sqlalchemy"
+version = "0.15.0"
+description = "SQLAlchemy integration with the marshmallow (de)serialization library"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+marshmallow = ">=2.0.0"
+SQLAlchemy = ">=0.9.7"
+
+[package.extras]
+dev = ["pytest", "mock", "flake8 (==3.6.0)", "pre-commit (==1.12.0)", "tox"]
+lint = ["flake8 (==3.6.0)", "pre-commit (==1.12.0)"]
+tests = ["pytest", "mock"]
+
+[[package]]
+name = "mysqlclient"
+version = "1.3.13"
+description = "Python interface to MySQL"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "python-dateutil"
+version = "2.8.2"
+description = "Extensions to the standard Python datetime module"
+category = "main"
+optional = false
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
+
+[package.dependencies]
+six = ">=1.5"
+
+[[package]]
+name = "python-editor"
+version = "1.0.4"
+description = "Programmatically open an editor, capture the result."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "pytz"
+version = "2022.2.1"
+description = "World timezone definitions, modern and historical"
+category = "main"
+optional = false
+python-versions = "*"
 
 [[package]]
 name = "rfc3986"
@@ -203,12 +395,39 @@ python-versions = "*"
 idna2008 = ["idna"]
 
 [[package]]
+name = "six"
+version = "1.16.0"
+description = "Python 2 and 3 compatibility utilities"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
+
+[[package]]
 name = "sniffio"
 version = "1.2.0"
 description = "Sniff out which async library your code is running under"
 category = "main"
 optional = false
 python-versions = ">=3.5"
+
+[[package]]
+name = "sqlalchemy"
+version = "1.2.13"
+description = "Database Abstraction Library"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.extras]
+mssql_pymssql = ["pymssql"]
+mssql_pyodbc = ["pyodbc"]
+mysql = ["mysqlclient"]
+oracle = ["cx-oracle"]
+postgresql = ["psycopg2"]
+postgresql_pg8000 = ["pg8000"]
+postgresql_psycopg2binary = ["psycopg2-binary"]
+postgresql_psycopg2cffi = ["psycopg2cffi"]
+pymysql = ["pymysql"]
 
 [[package]]
 name = "werkzeug"
@@ -239,14 +458,22 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "c7e209e42b79ebfc362426dbdaf19e95eac9507e8c964b72b2a6abc93635b705"
+content-hash = "0128f7e4692d11f63ef9990450166f7c86363f67691bcfcc9eea9599d24c02ce"
 
 [metadata.files]
+alembic = []
+aniso8601 = []
+application = []
 certifi = []
 chardet = []
 click = []
 colorama = []
 flask = []
+flask-marshmallow = []
+flask-migrate = []
+flask-mysqldb = []
+flask-restful = []
+flask-sqlalchemy = []
 googletrans = []
 h11 = []
 h2 = []
@@ -259,8 +486,17 @@ idna = []
 importlib-metadata = []
 itsdangerous = []
 jinja2 = []
+mako = []
 markupsafe = []
+marshmallow = []
+marshmallow-sqlalchemy = []
+mysqlclient = []
+python-dateutil = []
+python-editor = []
+pytz = []
 rfc3986 = []
+six = []
 sniffio = []
+sqlalchemy = []
 werkzeug = []
 zipp = []

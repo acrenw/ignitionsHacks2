@@ -44,21 +44,21 @@ def upload_file2():
   return render_template("upload.html")
   
 def callApi():
-	# print('callAPI check')
+	print('callAPI check')
 	global conversation_id, access_token
 	if request.method == 'POST':
 		if request.form.get('submit') == 'submit':
 			# print('calleth')
 			conversation_id = getAccessToken()
 			print('gotteeem',conversation_id)
-			if request.form.get('translate') == 'Translate':
-				pass # do something else
-		else:
-				pass
+		# 	if request.form.get('translate') == 'Translate':
+		# 		pass # do something else
+		# else:
+		# 		pass
 	elif request.method == 'GET':
-			return render_template('base.html')
+			return render_template('upload.html')
 	print(str(request.method))
-	return render_template("base.html")
+	return render_template("upload.html")
 
 def getAccessToken():
 	global access_token
@@ -200,35 +200,173 @@ def getConvoIDVid(access_token):
 	
 @app.route('/summarize')  
 def summarize():
-  global conversation_id, access_token
+	global conversation_id, access_token, result
   # conversation_id = session.get('conversation_id')
   # access_token = session.get('access_token')
-  print(conversation_id)
-  print(access_token)
-  url="https://api.symbl.ai/v1/conversations/" + conversation_id + "/summary"
-  headers = {
+	# print(conversation_id)
+	# print(access_token)
+	url="https://api.symbl.ai/v1/conversations/" + conversation_id + "/summary"
+	headers = {
     'Authorization': 'Bearer ' + access_token,
     'Content-Type': 'application/json'
   }
 
-  responses = {
+	responses = {
       401: 'Unauthorized. Please generate a new access token.',
       404: 'The conversation and/or it\'s metadata you asked could not be found, please check the input provided',
       500: 'Something went wrong! Please contact support@symbl.ai'
   }
 
-  response = requests.request("GET", url, headers=headers)
+	response = requests.request("GET", url, headers=headers)
 
-  if response.status_code == 200:
-    print(response.json())
-    print(response.json()['summary'][0]['text'])
-  elif response.status_code in responses.keys():
-    print(responses[response.status_code])  # Expected error occurred
-  else:
-    print("Unexpected error occurred. Please contact support@symbl.ai" + ", Debug Message => " + str(response.text))
+	if response.status_code == 200:
+		# print(response.json())
+		# print(response.json()['summary'][0]['text'])
+		result = response.json()['summary'][0]['text']
+		return render_template(
+		'upload.html',  # Template file path, starting from the templates folder. 
+		summary = response.json()['summary'][0]['text'],
+    translation = "undefined"
+	)
+	elif response.status_code in responses.keys():
+		print(responses[response.status_code])  # Expected error occurred
+	else:
+		print("Unexpected error occurred. Please contact support@symbl.ai" + ", Debug Message => " + str(response.text))
 
-  exit()
+	exit()
 
+@app.route('/translate' , methods = ['GET', 'POST'])
+def callTranslate():
+	trans_result = ''
+	print('translate call check')
+	if request.method == 'POST':
+		if request.form.get('translate') == 'Translate':
+			trans_result = translate()
+		elif request.method == 'GET':
+			return render_template('base.html')
+	return render_template(
+		'upload.html',  # Template file path, starting from the templates folder. 
+		summary = result,
+    translation_result = trans_result  
+	)
+
+
+def translate():
+	tmpLang = {
+	    'af': 'afrikaans',
+	    'sq': 'albanian',
+	    'am': 'amharic',
+	    'ar': 'arabic',
+	    'hy': 'armenian',
+	    'az': 'azerbaijani',
+	    'eu': 'basque',
+	    'be': 'belarusian',
+	    'bn': 'bengali',
+	    'bs': 'bosnian',
+	    'bg': 'bulgarian',
+	    'ca': 'catalan',
+	    'ceb': 'cebuano',
+	    'ny': 'chichewa',
+	    'zh-cn': 'chinese (simplified)',
+	    'zh-tw': 'chinese (traditional)',
+	    'co': 'corsican',
+	    'hr': 'croatian',
+	    'cs': 'czech',
+	    'da': 'danish',
+	    'nl': 'dutch',
+	    'en': 'english',
+	    'eo': 'esperanto',
+	    'et': 'estonian',
+	    'tl': 'filipino',
+	    'fi': 'finnish',
+	    'fr': 'french',
+	    'fy': 'frisian',
+	    'gl': 'galician',
+	    'ka': 'georgian',
+	    'de': 'german',
+	    'el': 'greek',
+	    'gu': 'gujarati',
+	    'ht': 'haitian creole',
+	    'ha': 'hausa',
+	    'haw': 'hawaiian',
+	    'iw': 'hebrew',
+	    'he': 'hebrew',
+	    'hi': 'hindi',
+	    'hmn': 'hmong',
+	    'hu': 'hungarian',
+	    'is': 'icelandic',
+	    'ig': 'igbo',
+	    'id': 'indonesian',
+	    'ga': 'irish',
+	    'it': 'italian',
+	    'ja': 'japanese',
+	    'jw': 'javanese',
+	    'kn': 'kannada',
+	    'kk': 'kazakh',
+	    'km': 'khmer',
+	    'ko': 'korean',
+	    'ku': 'kurdish (kurmanji)',
+	    'ky': 'kyrgyz',
+	    'lo': 'lao',
+	    'la': 'latin',
+	    'lv': 'latvian',
+	    'lt': 'lithuanian',
+	    'lb': 'luxembourgish',
+	    'mk': 'macedonian',
+	    'mg': 'malagasy',
+	    'ms': 'malay',
+	    'ml': 'malayalam',
+	    'mt': 'maltese',
+	    'mi': 'maori',
+	    'mr': 'marathi',
+	    'mn': 'mongolian',
+	    'my': 'myanmar (burmese)',
+	    'ne': 'nepali',
+	    'no': 'norwegian',
+	    'or': 'odia',
+	    'ps': 'pashto',
+	    'fa': 'persian',
+	    'pl': 'polish',
+	    'pt': 'portuguese',
+	    'pa': 'punjabi',
+	    'ro': 'romanian',
+	    'ru': 'russian',
+	    'sm': 'samoan',
+	    'gd': 'scots gaelic',
+	    'sr': 'serbian',
+	    'st': 'sesotho',
+	    'sn': 'shona',
+	    'sd': 'sindhi',
+	    'si': 'sinhala',
+	    'sk': 'slovak',
+	    'sl': 'slovenian',
+	    'so': 'somali',
+	    'es': 'spanish',
+	    'su': 'sundanese',
+	    'sw': 'swahili',
+	    'sv': 'swedish',
+	    'tg': 'tajik',
+	    'ta': 'tamil',
+	    'te': 'telugu',
+	    'th': 'thai',
+	    'tr': 'turkish',
+	    'uk': 'ukrainian',
+	    'ur': 'urdu',
+	    'ug': 'uyghur',
+	    'uz': 'uzbek',
+	    'vi': 'vietnamese',
+	    'cy': 'welsh',
+	    'xh': 'xhosa',
+	    'yi': 'yiddish',
+	    'yo': 'yoruba',
+	    'zu': 'zulu',
+	}
+	langDict = {v: k for k, v in tmpLang.items()}
+	translator = Translator()
+	lang = 'chinese (simplified)'.lower()
+	translation = translator.translate(result, dest=langDict[lang])
+	print(str(translation.text))
+	return (str(translation.text))
 
 if __name__ == "__main__":  # Makes sure this is the main process
 	app.run( # Starts the site
