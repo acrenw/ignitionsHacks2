@@ -2,6 +2,9 @@ import random, string
 from flask import Flask, render_template, request
 import requests, json
 from werkzeug.utils import secure_filename
+from time import sleep
+from googletrans import Translator, constants
+from pprint import pprint
 
 app = Flask(  # Create a flask app
 	__name__,
@@ -33,7 +36,6 @@ def base_page():
 		accessToken = response.json()['accessToken']  # Sets the variable random_number in the template
 	)
 
-
 @app.route('/2')
 def page_2():
 	rand_ammnt = random.randint(10, 100)
@@ -52,10 +54,24 @@ def upload_file2():
       f.save(secure_filename(f.filename))
       return 'file uploaded successfully'
 
+@app.route('/callApi',methods=['GET', 'POST'])
+def callApi():
+	if request.method == 'POST':
+			if request.form.get('summary') == 'Get summary':
+				pass # do something
+				if request.form.get('translate') == 'Translate':
+					pass # do something else
+			else:
+					pass
+	elif request.method == 'GET':
+			return render_template('index.html', 'button failed')
+	
+	return render_template("index.html")
+
 
 if __name__ == "__main__":  # Makes sure this is the main process
 	app.run( # Starts the site
 		host='0.0.0.0',  # Establishes the host, required for repl to detect the site
-		port=random.randint(2000, 9000),  # Randomly select the port the machine hosts on.
+		port=5000,  # Randomly select the port the machine hosts on.
 		debug=True
 	)

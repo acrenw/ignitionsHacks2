@@ -1,10 +1,20 @@
 <!doctype html>
 <html>
    <body>
-      <form action = "http://localhost:5000/uploader" method = "POST" 
+      <form action = "/uploader" method = "POST" 
          enctype = "multipart/form-data">
          <input type = "file" name = "file" />
          <input type = "submit"/>
       </form>
+    <form method="post" action="/">
+        <input type="submit" value="Get summary" name="summary"/>
+        <input type="submit" value="Translate" name="translate" />
+    </form>
+		 
+		<div class="myDiv">
+		  <p>Insert summary here</p>
+			<p>Insert translation here</p>
+		</div>
+		 
    </body>
 </html>
