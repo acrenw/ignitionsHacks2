@@ -2,13 +2,13 @@
     "version": 2,
     "builds": [
         {
-            "arc": "./index.py",
+            "src": "./index.py",
             "use": "@vercel/python"
         }
     ],
     "routes": [
         {
-            "arc": "/(.*)",
+            "src": "/(.*)",
             "dest": "/"
         }
     ]
