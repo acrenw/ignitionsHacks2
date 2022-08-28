@@ -1,17 +1,45 @@
-cb { background-color: rgb(63, 63, 63) }
-
-
-
-body {
+html, body {
 	text-align: center;
-	font-family: 'IBM Plex Sans', sans-serif;
-	background-color: black;
+	font-family: 'Poppins';
+	background-color: #383838;
 	color: white;
+  margin: 0;
 }
 
-a {
-	color: blue;
-	-webkit-appearance: button;
-	-moz-appearance: button;
-	appearance: button;
+.header {
+  padding: 50px;
+  text-align: center;
+  font-family: 'Poppins';
+  background: #000000;
+  color: white;
+  font-size: 70px;
 }
+
+img {
+  width: 500px;
+  height: 500px;
+}
+
+.button {
+  background-color: #b9a0fd;
+  colour: white;
+  border: none;
+  padding: 15px 32px;
+  border-radius: 8px;
+  width: 40%;
+}
+
+.button:hover {
+  background-color: #d7c9fd;
+}
+
+/* .row {
+  width: 300 px;
+  display: flex;
+  align-items: left;
+}
+
+.row img {
+  width: 50 px;
+  margin-right: 20 px;
+} */

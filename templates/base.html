@@ -1,16 +1,26 @@
 <!doctype html>
 <head>
-	<title>Flask Tutorial!</title>
+  <link href="/static/base.css" rel="stylesheet" type="text/css">
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>OStranslate</title>
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 	<script src="/main.py"></script>
-	<link href="/static/base.css" rel="stylesheet" type="text/css">
-	<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap" rel="stylesheet"> 
 </head>
+
+
 <body>
-	<h1>Hello!</h1>
-	<p>
-		The token is:
-		<cb>{{ accessToken }}</cb>! <!--Gets the random number from the python file-->
-	</p>
-	<a href="/2" style="color: blue; -webkit-appearance: button; -moz-appearance: button; appearance: button;">Visit site 2</a>
-  <a href="/upload" style="color: blue; -webkit-appearance: button; -moz-appearance: button; appearance: button;">upload</a>
+  
+	<div class="header">
+    <img src = "https://i.postimg.cc/L6XKMC5L/a66dff-2.png" alt="logo">
+    
+    <h1>OStranslate</h1> 
+
+  <p>"Optimize, summarize, translate"</p>
+  </div>
+  
+<a class = "button" href="/upload" style = "color: white; text-decoration: none;">upload a file to start</a>
+
 </body>
