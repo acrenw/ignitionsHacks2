@@ -12,12 +12,12 @@ html, body {
   font-family: 'Poppins';
   background: #000000;
   color: white;
-  font-size: 50px;
+  font-size: 30px;
 }
 
 img {
-  width: 500px;
-  height: 500px;
+  width: 300px;
+  height: 300px;
 }
 
 .button {
@@ -27,7 +27,7 @@ img {
   padding: 32px 16px;
   border-radius: 8px;
   width: 70%;
-  font-size: 50 px;
+  font-size: 20 px;
 }
 
 .button:hover {
